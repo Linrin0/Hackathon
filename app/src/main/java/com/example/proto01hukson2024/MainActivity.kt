@@ -12,6 +12,8 @@ import com.example.proto01hukson2024.R
 
 class MainActivity : AppCompatActivity() {
 
+
+
     private lateinit var speechRecognizer: SpeechRecognizer
     private val recognizedTextArray = mutableListOf<String>()
 
@@ -47,9 +49,9 @@ class MainActivity : AppCompatActivity() {
             override fun onResults(results: Bundle?) {
                 // 認識結果を取得
                 val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                if (!matches.isNullOrEmpty()) {
-                    recognizedTextArray.addAll(matches)
-                    Toast.makeText(this@MainActivity, "認識成功: ${matches[0]}", Toast.LENGTH_SHORT).show()
+                if (matches != null) {
+                    recognizedTextArray.addAll(matches) // 配列に認識結果を追加
+                    Toast.makeText(this@MainActivity, "認識結果: ${matches.joinToString(", ")}", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -70,7 +72,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+
         super.onDestroy()
         speechRecognizer.destroy()
+
     }
+
 }
