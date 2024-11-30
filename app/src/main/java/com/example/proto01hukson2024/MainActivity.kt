@@ -1,4 +1,4 @@
-package com.example.speechrecognizer
+package com.example.proto01hukson2024;
 
 import android.content.Intent
 import android.os.Bundle
