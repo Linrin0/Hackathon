@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.chaquo.python")
 }
 
 android {
@@ -15,6 +16,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters += listOf("arm64-v8a", "x86_64")
+        }
     }
 
     buildTypes {
@@ -34,6 +38,18 @@ android {
         jvmTarget = "1.8"
     }
 }
+chaquopy {
+    defaultConfig {
+
+        buildPython("C:\\Users\\rinri\\AppData\\Local\\Programs\\Python\\Python312\\python.exe")
+        pip {
+            install("sseclient-py")
+            install("requests")
+        }
+
+
+    }
+}
 
 dependencies {
 
@@ -45,4 +61,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

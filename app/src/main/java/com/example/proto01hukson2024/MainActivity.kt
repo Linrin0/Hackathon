@@ -8,10 +8,10 @@ import android.speech.SpeechRecognizer
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.chaquo.python.Python
 import com.example.proto01hukson2024.R
 
 class MainActivity : AppCompatActivity() {
-
 
 
     private lateinit var speechRecognizer: SpeechRecognizer
@@ -52,6 +52,13 @@ class MainActivity : AppCompatActivity() {
                 if (matches != null) {
                     recognizedTextArray.addAll(matches) // 配列に認識結果を追加
                     Toast.makeText(this@MainActivity, "認識結果: ${matches.joinToString(", ")}", Toast.LENGTH_SHORT).show()
+                    val py = Python.getInstance()
+
+                    val module = py.getModule("app")
+
+                    val result = module.callAttr("main_work","2024-9-28,9:30にテストなので自転車で大学に行きます")
+
+                    Toast.makeText(this@MainActivity," res:" + result.toString(),Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -69,7 +76,39 @@ class MainActivity : AppCompatActivity() {
             }
             speechRecognizer.startListening(intent)
         }
+        //結合部石寺
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     override fun onDestroy() {
 
@@ -79,3 +118,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+
+
+
+
